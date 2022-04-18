@@ -54,25 +54,34 @@ class ExtractJob:
             )
             # read the input file
             self.df = self.spark_session.read.json(self.source_path, schema=json_schema, multiLine=True)
-            df_init = self.df.withColumn("country", initcap(col('country')))
-            ip_valid_udf = udf(self.helper_utils.validIPAddress)
-            self.df_valid = df_init.withColumn('ip_validity', ip_valid_udf('ip_address'))
 
         def capitilize_name() -> None:
+            """
+            Capitilize the first letter of the country coulmn.
+            """
             self.logger.info('Running capitilize Job')
             self.df = self.df.withColumn("country", initcap(col('country')))
 
         def validate_ip() -> None:
+            """
+            Validate the ip column
+            """
             self.logger.info('Running Validation Job')
             ip_valid_udf = udf(self.helper_utils.validIPAddress)
             self.df = self.df.withColumn('ip_validity', ip_valid_udf('ip_address'))
 
         def to_date_format() -> None:
+            """
+            Taking a fixed format for the date column
+            """
             self.logger.info('Running DATE Job')
             self.df = self.df.withColumn('date', to_date('date', 'dd/mm/yyyy'))
             self.df.show()
 
         def to_persist_data() -> None:
+            """
+            Data persist to use for later into postgres
+            """
             self.logger.info('Running persistent Job')
             (self.df.write
              .format("jdbc")
