@@ -21,6 +21,9 @@ If you want to run in background:
     $ docker-compose up -d
 
 
+Here is my docker container list:
+  ![](./doc/docker-ps.png "Docker PS list")
+
 ### Check if you can access
 
 Airflow: http://localhost:8282
@@ -37,6 +40,10 @@ Spark Master: http://localhost:8181
 
 2. Edit the spark_default connection inserting `spark://spark` in Host field and Port `7077`
     ![](./doc/airflow_spark_connection.png "Airflow Spark connection")
+
+Please run the program with local spark mode. As i built the spark image from scratch there might be some
+issues with standalone mode.
+For standalone mode, the master should be: spark://spark and port 7077
 
 3. Run the spark-test DAG
    
@@ -192,3 +199,11 @@ More info at: https://github.com/puckel/docker-airflow#build
 # Extras
 ## The report
 I have made the report extra to just show that the program works and finds some insight.
+
+# Unit and Integration Test :
+Testing pyspark application is complicated and it may take some time. I have not done it here but i have
+done just one unit test. Integration test needs the spark shared instances to test few units as a integration test.
+
+Here is a screenshot of my one unit test:
+
+![](/doc/test-unit.png "Unit test of helper function ip valid")
