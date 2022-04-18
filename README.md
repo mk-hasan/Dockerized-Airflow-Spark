@@ -1,40 +1,16 @@
-# Airflow Spark
+# Note: 
 
-This project contains the following containers:
-
-* postgres: Postgres database for Airflow metadata and a Test database to test whatever you want.
-    * Image: postgres:9.6
-    * Database Port: 5432
-    * References: https://hub.docker.com/_/postgres
-
-
-I have created two custom image for airflow and spark with the required library.
-
-* airflow-webserver: Airflow webserver and Scheduler.
-    * Image: mkhasan0007/docker-airflow-spark:3.1.2
-    * Port: 8282
-
-* spark: Spark Master.
-    * Image: mkhasan0007/bitnami-spark:3.1.2
-    * Port: 8181
-    * References: 
-      * https://github.com/bitnami/bitnami-docker-spark
-      * https://hub.docker.com/r/bitnami/spark/tags/?page=1&ordering=last_updated
-
-* spark-worker-N: Spark workers. You can add workers copying the containers and changing the container name inside the docker-compose.yml file.
-    * Image: bitnami/spark:3.1.2
-    * References: 
-      * https://github.com/bitnami/bitnami-docker-spark
-      * https://hub.docker.com/r/bitnami/spark/tags/?page=1&ordering=last_updated
-      
+I have created two docker image already with custom librariries. So that, we dont need to build the docker
+everytime we restart the machine.
+Step to run the whole program is simple :
 
 ## Setup
 
 ### Clone project
 
-    $ git clone https://github.com/cordon-thiago/airflow-spark
+    $ git clone https://github.com/mk-hasan/oetker-ts.git
 
-### Start containers
+### Start containers from docker folder
 
 Navigate to airflow-spark/docker and:
 
@@ -44,7 +20,6 @@ If you want to run in background:
 
     $ docker-compose up -d
 
-Note: when running the docker-compose for the first time, the images `postgres:9.6`, `bitnami/spark:3.1.2` and `jupyter/pyspark-notebook:spark-3.1.2` will be downloaded before the containers started.
 
 ### Check if you can access
 
@@ -52,19 +27,7 @@ Airflow: http://localhost:8282
 
 Spark Master: http://localhost:8181
 
-PostgreSql - Database Test:
 
-* Server: localhost:5432
-* Database: test
-* User: test
-* Password: postgres
-
-Postgres - Database airflow:
-
-* Server: localhost:5432
-* Database: airflow
-* User: airflow
-* Password: airflow
 
 
 ## How to run a DAG to test
@@ -115,7 +78,54 @@ After running the dag succesfully, there will be a report generated in the spark
 This is a simple report generated with some insight from the data.
 
 
+# Airflow Spark
 
+
+Note: when running the docker-compose for the first time, the images `postgres:9.6`, `mkhasan0007/bitnami-spark:3.1.2` and `mkhasan0007/docker-airflow-spark` will be downloaded before the containers started.
+
+
+
+PostgreSql - Database Test:
+
+* Server: localhost:5432
+* Database: test
+* User: test
+* Password: postgres
+
+Postgres - Database airflow:
+
+* Server: localhost:5432
+* Database: airflow
+* User: airflow
+* Password: airflow
+
+This project contains the following containers:
+
+* postgres: Postgres database for Airflow metadata and a Test database to test whatever you want.
+    * Image: postgres:9.6
+    * Database Port: 5432
+    * References: https://hub.docker.com/_/postgres
+
+
+I have created two custom image for airflow and spark with the required library.
+
+* airflow-webserver: Airflow webserver and Scheduler.
+    * Image: mkhasan0007/docker-airflow-spark:3.1.2
+    * Port: 8282
+
+* spark: Spark Master.
+    * Image: mkhasan0007/bitnami-spark:3.1.2
+    * Port: 8181
+    * References: 
+      * https://github.com/bitnami/bitnami-docker-spark
+      * https://hub.docker.com/r/bitnami/spark/tags/?page=1&ordering=last_updated
+
+* spark-worker-N: Spark workers. You can add workers copying the containers and changing the container name inside the docker-compose.yml file.
+    * Image: bitnami/spark:3.1.2
+    * References: 
+      * https://github.com/bitnami/bitnami-docker-spark
+      * https://hub.docker.com/r/bitnami/spark/tags/?page=1&ordering=last_updated
+      
 
 ## Increasing the number of Spark Workers
 
@@ -180,9 +190,5 @@ More info at: https://github.com/puckel/docker-airflow#build
     $ docker-compose -f <compose-file.yml> down --remove-orphans
     
 # Extras
-## Spark + Postgres sample
-
-* The DAG [spark-postgres.py](dags/spark-postgres.py) loads [movies.csv](spark/resources/data/movies.csv) and [ratings.csv](spark/resources/data/ratings.csv) data into Postgres tables and query these tables to generate a list of top 10 movies with more rates.
-  * This DAG runs the load-postgres.py and read-postgres.py applications. These applications are also available in the notebooks [load-postgres-notebook.ipynb](notebooks/load-postgres-notebook.ipynb) and [read-postgres-notebook.ipynb](notebooks/read-postgres-notebook.ipynb).
-
-
+## The report
+I have made the report extra to just show that the program works and finds some insight.
