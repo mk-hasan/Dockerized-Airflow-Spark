@@ -43,7 +43,7 @@ Spark Master: http://localhost:8181
 
 Please run the program with local spark mode. As i built the spark image from scratch there might be some
 issues with standalone mode.
-For standalone mode, the master should be: spark://spark and port 7077
+For standalone mode, the master should be: spark://spark and port:7077
 
 3. Run the spark-test DAG
    
@@ -197,6 +197,14 @@ More info at: https://github.com/puckel/docker-airflow#build
     $ docker-compose -f <compose-file.yml> down --remove-orphans
     
 # Extras
+#Run spark app speartely from conda env or local virtual env:
+If you want to test the app separtely that is also possible, just make sure the docker postgres server is running as it needs this service.
+also make sure, you export python path properly otherwise you will get ModuleNotFound Error.
+
+This way you can export python path:
+
+    $ export PYTHONPATH="${PYTHONPATH}:${PWD}"
+
 ## The report
 I have made the report extra to just show that the program works and finds some insight.
 
