@@ -1,0 +1,9 @@
+{
+  "input_path": "../../resources/data/mock_data.json",
+  "report_path": "../../../report/",
+  "db_host": "",
+  "db_user": "",
+  "db_table": "",
+  "db_password": ""
+}
+

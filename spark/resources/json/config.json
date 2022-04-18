@@ -1,0 +1,13 @@
+{
+  "input_path": "/usr/local/spark/resources/data/mock_data.json",
+  "report_path": "/usr/local/spark/resources/report/",
+  "postgres_db": "jdbc:postgresql://postgres/test",
+  "postgres_user": "test",
+  "postgres_pwd" : "postgres",
+  "postgres_table": "public.oetker",
+  "spark_master": "local[*]",
+  "postgres_driver_jar" : "/usr/local/spark/resources/jars/postgresql-9.4.1207.jar",
+  "config_file" : "/usr/local/spark/resources/json/config.json",
+  "url" : "https://storage.googleapis.com/datascience-public/data-eng-challenge/MOCK_DATA.json"
+}
+
