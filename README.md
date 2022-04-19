@@ -12,7 +12,7 @@ Step to run the whole program is simple :
 
 ### Start containers from docker folder
 
-Navigate to airflow-spark/docker and:
+Navigate to docker folder and:
 
     $ docker-compose up
 
