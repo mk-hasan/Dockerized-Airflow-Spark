@@ -176,7 +176,7 @@ More info at: https://github.com/puckel/docker-airflow#build
     $ docker-compose -f <compose-file.yml> down --remove-orphans
     
 # Extras
-#Run spark app speartely from conda env or local virtual env:
+## Run spark app speartely from conda env or local virtual env:
 If you want to test the app separtely that is also possible, just make sure the docker postgres server is running as it needs this service.
 also make sure, you export python path properly otherwise you will get ModuleNotFound Error.
 
