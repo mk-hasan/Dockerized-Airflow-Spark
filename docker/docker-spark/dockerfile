@@ -1,0 +1,8 @@
+FROM bitnami/spark:3.1.2
+
+RUN pip install jinja2
+RUN pip install seaborn
+
+# command to run on container start
+CMD [ "python", "-V" ]
+
